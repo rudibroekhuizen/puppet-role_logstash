@@ -1,0 +1,30 @@
+input {
+  exec {
+    command  => "snmpget -v 2c -c public -Ln -Oqes 10.1.10.100 hpDiscoverStatsSwitchSystemName.1 hpHttpMgDeviceLocation.1 entPhySensorValue.17 hpicfSensorStatus.1"
+    tags     => [ "snmpget" ]
+    interval => 30
+  }
+}
+
+filter {
+  if "snmpget" in [tags] {
+    kv {
+      field_split => "\n"
+      value_split => " "
+    }
+    mutate {
+      convert => [ "entPhySensorValue.17", "integer",
+                   "hpicfSensorStatus.1", "integer"
+                 ]
+    }
+  }
+}
+
+output {
+  #elasticsearch {
+  #  cluster => "cluster-03"
+  #}
+  stdout {
+    codec => rubydebug
+  }
+}

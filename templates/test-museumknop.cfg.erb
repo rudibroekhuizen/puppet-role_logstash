@@ -1,0 +1,30 @@
+input {
+        stdin {
+        type => "museumknop"
+        }
+}
+
+filter
+{
+        grok {
+                match => {"message" => "%{WORD} %{GREEDYDATA:time} ---->  - \[%{GREEDYDATA:interface}\] > %{WORD:status}"}
+        }
+
+	      date {
+		            match => ['time', "dd MMM YYYY - HH:mm:ss"]
+		            timezone => "UTC"
+	      }
+
+        if '_grokparsefailure' in [tags] {
+                drop {}
+        }
+
+	      if [interface]!= "Startup-Script" and [interface]!= "Shutdown-Script" {
+                drop {}
+        }
+}
+
+output {
+        elasticsearch { host => localhost }
+        stdout { codec => rubydebug }
+}
