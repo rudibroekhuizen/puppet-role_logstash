@@ -45,6 +45,10 @@ management, etc.) this is the time to mention it.
 - puppetlabs/apt (version 1.7.x) with newer version there is issue with key_server: https://github.com/elastic/puppet-logstash/issues/191#issuecomment-87937782
 - puppetlabs/stdlib (>= 3.2.0)
 
+OR
+
+Use https://github.com/olx-inc/puppet-logstash and avoid the key_server issue
+
 ### Beginning with role_logstash
 
 The very basic steps needed for a user to get the module up and running.
