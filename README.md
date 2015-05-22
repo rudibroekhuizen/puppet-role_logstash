@@ -38,9 +38,12 @@ management, etc.) this is the time to mention it.
 * This is a great place to stick any warnings.
 * Can be in list or paragraph form.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-elasticsearch/logstash
+- elasticsearch/logstash (version 0.5.1)
+- ispavailability-file_concat (>= 0.1.0)
+- puppetlabs/apt (version 1.7.x) with newer version there is issue with key_server: https://github.com/elastic/puppet-logstash/issues/191#issuecomment-87937782
+- puppetlabs/stdlib (>= 3.2.0)
 
 ### Beginning with role_logstash
 
