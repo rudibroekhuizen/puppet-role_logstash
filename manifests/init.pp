@@ -37,9 +37,8 @@
 #
 class role_logstash(
   $java_install = true,
-  $manage_repo  = true,
-  $repo_version = '1.4',
-  $configfile   = 'logstash-snmpget-01.conf',
+  $package_url  = 'https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.1.1-1_all.deb',
+  $configfile   = 'logstash-generator-01.conf',
   $config_hash  = { 'LS_HEAP_SIZE' => '200m',
                     'LS_USER'      => 'root', # Use root here, not logstash user. With logstash user syslog files cannot be read, permission denied.
                   }
@@ -48,20 +47,13 @@ class role_logstash(
 # Install logstash
   class { 'logstash':
     java_install  => $java_install,
-    manage_repo   => $manage_repo,
-    repo_version  => $repo_version,
+    package_url   => $package_url,
     init_defaults => $config_hash,
   }
 
 # Load logstash filter, will be renamed to /etc/logstash/conf.d/logstash.conf
   logstash::configfile { $configfile:
     source => "puppet:///modules/role_logstash/${configfile}",
-  }
-
-# Disable logstash-web service, it uses 500 MB, we don't need it
-  service { "logstash-web":
-    enable  => false,
-    require => Class[logstash], 
   }
 
 }
