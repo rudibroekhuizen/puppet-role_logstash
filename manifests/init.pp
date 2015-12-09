@@ -48,8 +48,8 @@ class role_logstash(
 # Install logstash
   class { 'logstash':
     java_install  => $java_install,
-    manage_repo   => $manage_repo,
-    repo_version  => $repo_version,
+    #manage_repo   => $manage_repo,
+    package_url   => 'https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.1.1-1_all.deb',
     init_defaults => $config_hash,
   }
 
