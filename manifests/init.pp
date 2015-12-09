@@ -38,7 +38,7 @@
 class role_logstash(
   $java_install = true,
   $package_url  = 'https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.1.1-1_all.deb',
-  $configfile   = 'logstash-snmpget-01.conf',
+  $configfile   = 'logstash-generator-01.conf',
   $config_hash  = { 'LS_HEAP_SIZE' => '200m',
                     'LS_USER'      => 'root', # Use root here, not logstash user. With logstash user syslog files cannot be read, permission denied.
                   }
