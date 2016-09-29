@@ -44,16 +44,19 @@ class role_logstash(
                   }
   ) {
 
-# Install logstash
+  # Install logstash
   class { 'logstash':
     java_install  => $java_install,
     package_url   => $package_url,
     init_defaults => $config_hash,
   }
 
-# Load logstash filter, will be renamed to /etc/logstash/conf.d/logstash.conf
+  # Load logstash filter, will be renamed to /etc/logstash/conf.d/logstash.conf
   logstash::configfile { $configfile:
     source => "puppet:///modules/role_logstash/${configfile}",
   }
+  
+  # Add custom pattern files
+  class { 'role_logstash::patternfile': }
 
 }
