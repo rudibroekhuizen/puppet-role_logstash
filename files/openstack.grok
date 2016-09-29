@@ -1,0 +1,6 @@
+# Logstash GROK patterns for OpenStack syslogs
+
+DNSMASQ_DHCP %{WORD:dhcp_action}%{TAP_DEVICE}%{SPACE}%{IPV4:dhcp_client_ip}%{SPACE}%{COMMONMAC:dhcp_client_mac}
+TAP_DEVICE (\(%{GREEDYDATA:tap_device})\)
+OPENSTACK_PROGRAM (^fuel$|^horizon_access$|^nova-api$|^neutron-server$|^cinder-api$|^heat-engine$|^nailgun-agent$|^mcollective$|^glance-api$|^nova-compute$|^heat-api$|^heat-api-cfn$|^dnsmasq-dhcp$|^ocf-ns_haproxy$|^murano-api$|^haproxy$|^ceph-osd$|^ceph-mon$)
+OPENSTACK_USER [0-9A-Za-z]{32}
