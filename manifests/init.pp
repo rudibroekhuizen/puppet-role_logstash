@@ -59,9 +59,9 @@ class role_logstash(
   $patternfiles = ["openstack.grok", "pfsense.grok"]
 
   # Add custom pattern files
-  $patternfiles.each |String $patternfile| {
-    logstash::patternfile { $patternfile:
-      source => 'puppet:///modules/role_logstash/$patternfile'
+  $patternfiles.each |String $file| {
+    logstash::patternfile { $file:
+      source => 'puppet:///modules/role_logstash/$file'
     }
   }
 }
