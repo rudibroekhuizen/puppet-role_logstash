@@ -42,6 +42,7 @@ class role_logstash(
   $config_hash  = { 'LS_HEAP_SIZE' => '200m',
                     'LS_USER'      => 'root', # Use root here, not logstash user. With logstash user syslog files cannot be read, permission denied.
                   }
+  $patternfiles = ["openstack.grok", "pfsense.grok"]
   ) {
 
   # Add repo for openjdk7 (Ubuntu 16.04)
@@ -58,8 +59,6 @@ class role_logstash(
   logstash::configfile { $configfile:
     source => "puppet:///modules/role_logstash/${configfile}",
   }
-  
-  $patternfiles = ["openstack.grok", "pfsense.grok"]
 
   # Add custom pattern files (Puppet 4 style)
   $patternfiles.each |String $patternfile| {
