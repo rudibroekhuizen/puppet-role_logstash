@@ -41,7 +41,7 @@ class role_logstash(
   $configfile   = 'logstash-generator-01.conf',
   $config_hash  = { 'LS_HEAP_SIZE' => '200m',
                     'LS_USER'      => 'root', # Use root here, not logstash user. With logstash user syslog files cannot be read, permission denied.
-                  }
+                  },
   $patternfiles = ["openstack.grok", "pfsense.grok"]
   ) {
 
