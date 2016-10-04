@@ -45,15 +45,11 @@ class role_logstash(
   $patternfiles = ["openstack.grok", "pfsense.grok"]
   ) {
 
-  # Add repo for openjdk7 (Ubuntu 16.04)
-  include apt
-  apt::ppa { 'ppa:openjdk-r/ppa': 
-    notify => Exec[apt-update],
-  } ->
+  # Install Java
+  class { 'java': } ->
 
   # Install logstash
   class { 'logstash':
-    java_install  => $java_install,
     package_url   => $package_url,
     init_defaults => $config_hash,
   }
