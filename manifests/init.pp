@@ -46,7 +46,7 @@ class role_logstash(
   ) {
 
   # Install Java
-  class { 'java': } ->
+  include java
 
   # Install logstash
   class { 'logstash':
