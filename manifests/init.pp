@@ -47,7 +47,9 @@ class role_logstash(
 
   # Add repo for openjdk7 (Ubuntu 16.04)
   include apt
-  apt::ppa { 'ppa:openjdk-r/ppa': } ->
+  apt::ppa { 'ppa:openjdk-r/ppa': 
+    notify => Exec[apt-update],
+  } ->
 
   # Install logstash
   class { 'logstash':
