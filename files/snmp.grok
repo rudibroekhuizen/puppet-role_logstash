@@ -1,3 +1,3 @@
 # Logstash GROK patterns for SNMPGET messages
 
-SYNTAX (STRING|INTEGER|Timeticks|Counter32|IpAddress|Gauge32)
+SYNTAX (STRING|INTEGER|IpAddress|Timeticks|Counter32|Counter64|Gauge32|Gauge64)
