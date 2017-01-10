@@ -36,7 +36,6 @@
 # Copyright 2014 Your name here, unless otherwise noted.
 #
 class role_logstash(
-  #$java_install = true,
   $package_url  = 'https://artifacts.elastic.co/downloads/logstash/logstash-5.1.1.deb',
   $configfile   = 'logstash-generator-01.conf',
   $config_hash  = { 'LS_HEAP_SIZE' => '200m',
@@ -66,6 +65,6 @@ class role_logstash(
     }
   }
   
-  logstash::plugin { 'logstash-input-beats': }
+  #logstash::plugin { 'logstash-input-beats': }
   
 }
