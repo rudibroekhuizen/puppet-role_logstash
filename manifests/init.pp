@@ -49,8 +49,8 @@ class role_logstash(
 
   # Install logstash
   class { 'logstash':
-    package_url   => $package_url,
-    init_defaults => $config_hash,
+    package_url     => $package_url,
+    #startup_options => $config_hash,
   }
 
   # Load logstash filter, will be renamed to /etc/logstash/conf.d/logstash.conf
@@ -65,6 +65,6 @@ class role_logstash(
     }
   }
   
-  #logstash::plugin { 'logstash-input-beats': }
+  logstash::plugin { 'logstash-input-beats': }
   
 }
