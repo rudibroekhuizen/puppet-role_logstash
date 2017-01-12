@@ -45,10 +45,7 @@ class role_logstash(
   ) {
 
   # Install Java
-  class { 'oracle_java':
-    version => '8u91',
-    type    => 'jdk'
-  }
+  package { 'openjdk-8-jdk': }
 
   # Install logstash
   class { 'logstash':
