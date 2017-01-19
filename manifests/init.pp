@@ -65,6 +65,8 @@ class role_logstash(
     }
   }
   
+  # Install plugins
   logstash::plugin { 'logstash-input-beats': }
+  logstash::plugin { 'logstash-codec-json_lines': }
   
 }
