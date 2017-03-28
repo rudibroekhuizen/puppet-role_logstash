@@ -47,6 +47,9 @@ class role_logstash(
   # Install Java
   package { 'openjdk-8-jdk': }
 
+  # Logstash slow start-up times and exhausting entropy
+  package { 'haveged': }
+
   # Install logstash
   class { 'logstash':
     package_url     => $package_url,
